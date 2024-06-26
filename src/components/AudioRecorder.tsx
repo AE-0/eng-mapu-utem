@@ -105,6 +105,7 @@ export default function AudioRecorder(props: {
 
         return () => {
             if (stream) {
+                // @ts-ignore
                 stream.getTracks().forEach((track) => track.stop());
             }
         };
@@ -133,15 +134,6 @@ export default function AudioRecorder(props: {
                     ? `Stop Recording (${formatAudioTimestamp(duration)})`
                     : "Start Recording"}
             </button>
-
-            {recordedBlob && (
-                <audio className='w-full' ref={audioRef} controls>
-                    <source
-                        src={URL.createObjectURL(recordedBlob)}
-                        type={recordedBlob.type}
-                    />
-                </audio>
-            )}
         </div>
     );
 }
